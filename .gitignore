@@ -2,3 +2,6 @@
 *.tar.gz
 .ipynb_checkpoints
 cache
+**/image/*.png
+OilChangeDataset/meshes/*.stl
+OilChangeDataset

@@ -39,9 +39,9 @@ if __name__ == '__main__':
     oilchange_scene.init(args.model_path, camera_parameters, camera_scale=args.camera_scale)
     position = list(map(float, args.position.split(',')))
     orientation = list(map(float, args.orientation.split(',')))
-    oilchange_scene.set_object_pose(position, orientation)
-    if args.mode == 'object':
-        oilchange_scene.set_mode_object()
-    elif args.mode == 'mask':
-        oilchange_scene.set_mode_mask()
-    oilchange_scene.render(args.output_path)
+    #oilchange_scene.set_object_pose(position, orientation)
+    #if args.mode == 'object':
+    #    oilchange_scene.set_mode_object()
+    #elif args.mode == 'mask':
+    #    oilchange_scene.set_mode_mask()
+    #oilchange_scene.render(args.output_path)

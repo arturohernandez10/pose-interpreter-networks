@@ -1,4 +1,5 @@
 import os
+import stat
 import subprocess
 import tempfile
 
@@ -66,7 +67,7 @@ def get_model_paths(oil_change_data_root, ann_file, object_names):
 
 class PoseRenderer:
     def __init__(self, blender_path, camera_parameters, model_path, mode, camera_scale=0.5):
-        self.blender_path = blender_path
+        self.blender_path = '"C:\\Program Files\\Blender Foundation\\Blender 2.83\\blender.exe"'#blender_path
 
         self.camera_parameters = camera_parameters
         self.model_path = model_path
@@ -82,7 +83,26 @@ class PoseRenderer:
 
         with tempfile.TemporaryDirectory() as cache_dir:
             output_path = os.path.join(cache_dir, 'render.png')
-            ret = subprocess.call([self.blender_path, '-b', '-P', self.script_path, '--',
+            print(output_path)
+            outtt = [self.blender_path, '-b', '-P', self.script_path, '--',
+                                   self.model_path, output_path, self.mode,
+                                   str(self.camera_parameters['width']), str(self.camera_parameters['height']),
+                                   str(self.camera_parameters['f_x']), str(self.camera_parameters['f_y']),
+                                   str(self.camera_parameters['p_x']), str(self.camera_parameters['p_y']),
+                                   str(self.camera_scale),
+                                   position, orientation]
+            print(outtt)
+
+            
+            res = os.chmod(self.model_path,
+                        stat.S_IRUSR |
+                        stat.S_IWUSR |
+                        stat.S_IRGRP |
+                        stat.S_IWGRP |
+                        stat.S_IROTH)
+            print(res, self.model_path)
+
+            ret = subprocess.call([self.blender_path, '-P', self.script_path, '--',
                                    self.model_path, output_path, self.mode,
                                    str(self.camera_parameters['width']), str(self.camera_parameters['height']),
                                    str(self.camera_parameters['f_x']), str(self.camera_parameters['f_y']),

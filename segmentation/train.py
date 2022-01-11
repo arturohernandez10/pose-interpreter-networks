@@ -8,7 +8,6 @@ from datetime import datetime
 
 import numpy as np
 import torch
-import torch.backends.cudnn as cudnn
 from munch import Munch
 from tensorboardX import SummaryWriter
 from torch import nn
@@ -21,7 +20,6 @@ import utils
 import sys
 assert sys.version.startswith('3.6')
 assert torch.__version__.startswith('0.4')
-
 
 def adjust_learning_rate(optimizer, epoch):
     lr = cfg.optimizer.lr
@@ -138,8 +136,8 @@ def main(cfg):
         print('checkpoint_dir: {}'.format(checkpoint_dir))
 
     single_model = models.DRNSeg(cfg.arch, cfg.data.classes, None, pretrained=True)
-    model = torch.nn.DataParallel(single_model).cuda()
-    cudnn.benchmark = True
+    torch.backends.cudnn.benchmark = True
+    model = torch.nn.DataParallel(single_model)
     criterion = nn.NLLLoss().cuda()
     optimizer = torch.optim.SGD(single_model.optim_parameters(),
                                 cfg.optimizer.lr,
