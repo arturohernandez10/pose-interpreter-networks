@@ -2,6 +2,7 @@ import os
 import stat
 import subprocess
 import tempfile
+import time
 
 import numpy as np
 import torch
@@ -82,8 +83,10 @@ class PoseRenderer:
         orientation = ','.join(map(str, orientation))
 
         with tempfile.TemporaryDirectory() as cache_dir:
-            output_path = os.path.join(cache_dir, 'render.png')
-            #print(output_path)
+            newtime = time.strftime('%H%M%S')
+            #output_path = os.path.join(cache_dir, 'render.png')
+            output_path = os.path.join('C:\\Users\\Arturo Hernandez\\AppData\\Local\\Temp\\tmp9cfayuof', newtime + 'render.png')
+            print(output_path)
             outtt = [self.blender_path, '-b', '-P', self.script_path, '--',
                                    self.model_path, output_path, self.mode,
                                    str(self.camera_parameters['width']), str(self.camera_parameters['height']),
