@@ -1,4 +1,4 @@
-#"C:\Program Files\Blender Foundation\Blender 2.83\blender.exe" -b -P c:\Projects\AI\DepthPrediction\pose-interpreter-networks\pose_estimation\render_pose.py -- ../data/OilChangeDataset\meshes\engine_high_quality.stl C:\Users\ARTURO~1\AppData\Local\Temp\tmp9cfayuof\render.png object 640 480 514.53821916 513.98831482 311.53091858 254.08105136 0.5 0.6267916603725309,-0.2400053275257872,1.97505545558372 -0.36661718245977093,-0.5256826836753582,0.6397888591893232,-0.4241695100621411
+#blender -b -P /home/arturo/AI/pose-interpreter-networks/pose_estimation/render_pose.py -- ./pose_estimation/data/meshes/engine_high_quality.stl render.png object 640 480 514.53821916 513.98831482 311.53091858 254.08105136 0.5 0.6267916603725309,-0.2400053275257872,1.97505545558372 -0.36661718245977093,-0.5256826836753582,0.6397888591893232,-0.4241695100621411
 
 
 from math import pi

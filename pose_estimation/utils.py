@@ -68,7 +68,7 @@ def get_model_paths(oil_change_data_root, ann_file, object_names):
 
 class PoseRenderer:
     def __init__(self, blender_path, camera_parameters, model_path, mode, camera_scale=0.5):
-        self.blender_path = 'C:\\Program Files\\Blender Foundation\\Blender 2.83\\blender.exe'#blender_path
+        self.blender_path = blender_path
 
         self.camera_parameters = camera_parameters
         self.model_path = model_path
@@ -85,7 +85,7 @@ class PoseRenderer:
         with tempfile.TemporaryDirectory() as cache_dir:
             newtime = time.strftime('%H%M%S')
             #output_path = os.path.join(cache_dir, 'render.png')
-            output_path = os.path.join('C:\\Users\\Arturo Hernandez\\AppData\\Local\\Temp\\tmp9cfayuof', newtime + 'render.png')
+            output_path = os.path.join('/home/arturo/AI/pose-interpreter-networks', newtime + 'render.png')
             print(output_path)
             outtt = [self.blender_path, '-b', '-P', self.script_path, '--',
                                    self.model_path, output_path, self.mode,
