@@ -4,8 +4,6 @@
 from math import pi
 
 import bpy
-import os
-import stat
 
 def clear_scene():
     for obj in bpy.data.objects:
@@ -65,7 +63,7 @@ def init(model_path, camera_parameters, camera_scale=0.5):
     bpy.context.scene.render.resolution_percentage = 100
     bpy.context.scene.use_nodes = True
     bpy.context.scene.render.engine = 'CYCLES'
-    #bpy.context.scene.cycles.device = 'CPU'
+    bpy.context.scene.cycles.device = 'CPU'
     place_lamp()
     setup_camera(camera_parameters, camera_scale)
     load_model(model_path)
